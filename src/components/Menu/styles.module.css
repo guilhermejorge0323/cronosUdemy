@@ -1,0 +1,37 @@
+
+.menu {
+    margin: 3.2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+}
+
+.menuLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+    color: var(--text-over-primary);
+    padding: 1.2rem;
+    border-radius: 0.8rem;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 0.8rem;
+    -moz-border-radius: 0.8rem;
+    -ms-border-radius: 0.8rem;
+    -o-border-radius: 0.8rem;
+}
+
+.menuLink:hover {
+    filter: brightness(80%);
+    -webkit-filter: brightness(80%);
+}
+
+.menuLink svg {
+    width: 2.4rem;
+    height: 2.4rem;
+}
