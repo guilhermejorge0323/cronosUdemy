@@ -1,23 +1,13 @@
 import './App.css';
-import { Container } from './components/Container';
-import { CountDown } from './components/CountDown';
-import { Logo } from './components/Logo';
-import { Menu } from './components/Menu';
+import { TaskContextProvider } from './contexts/TaskContext/TaskContextProvider';
+import { Home } from './pages/Home';
+
+
 
 export function App() {
   return (
-    <>
-      <Container>
-        <Logo />
-      </Container>
-
-      <Container>
-        <Menu />
-      </Container>
-
-      <Container>
-        <CountDown />
-      </Container>
-    </>
+    <TaskContextProvider>
+      <Home />
+    </TaskContextProvider>
   );
 }

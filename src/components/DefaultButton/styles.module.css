@@ -1,0 +1,42 @@
+.button {
+  border: none;
+  background-color: var(--primary);
+  color: var(--text-over-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24rem;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  -webkit-border-radius: 0.8rem;
+  -moz-border-radius: 0.8rem;
+  -ms-border-radius: 0.8rem;
+  -o-border-radius: 0.8rem;
+  margin: 4.8rem 0;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+}
+
+.button svg {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.button:hover {
+  filter: brightness(80%);
+  -webkit-filter: brightness(80%);
+}
+
+.green {
+  background-color: var(--primary);
+  color: var(--text-over-primary);
+}
+
+.red {
+  background-color: var(--error);
+  color: var(--text-over-error);
+}
