@@ -1,42 +1,49 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { initialTaskState } from "./initialTaskState";
 import { TaskContext } from "./TaskContext";
+import { taskReducer } from "./taskReducer";
+import { TimerWorkerManager } from "../../workers/TimerWorkerManager";
+import { TaskActionTypes } from "./taskActions";
 
 type TaskContextProviderProps = {
   children: React.ReactNode;
 };
 
-type actionType = {
-  type: string,
-  payload?: number
-}
 
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
-  const [state, setState] = useState(initialTaskState);
+  const [state, dispatch] = useReducer(taskReducer,initialTaskState);
 
-  const [myState, dispatch] = useReducer((state, action: actionType) => {
+  const worker = TimerWorkerManager.getInstance();
 
-    switch (action.type) {
-      case 'add':
-        if(!action.payload) return state
-        return {
-          ...state, secondsRemaning: state.secondsRemaning + action.payload,
-        }
+  worker.onmessage(e => {
+    const countDownSeconds = e.data;
+    console.log(countDownSeconds);
+
+
+    
+
+    if(countDownSeconds <= 0) {
+      dispatch({
+        type: TaskActionTypes.COMPLETE_TASK,
+      });
+      worker.terminate();
+    }else {
+      dispatch({type: TaskActionTypes.COUNT_DOWN, payload: {secondsRemaining: countDownSeconds}});
     }
+  })
 
-    return state;
-  }, {
-    secondsRemaning: 0
-  });
+   useEffect(() => {
+     if(!state.activeTask) {
+      console.log('Worker parado');
+      worker.terminate();
+     }
 
-  // useEffect(() => {
-  //   console.log(state);
-  // },[state]);
+     worker.postMessage(state);
+   },[worker ,state]);
 
   return (
-    <TaskContext.Provider value={{state, setState}}>
-      <h1>O estado e: {JSON.stringify(myState)}</h1>
-      <button onClick={() => dispatch({type: 'add', payload: 10})}>White</button>
+    <TaskContext.Provider value={{state, dispatch}}>
+      {children}
     </TaskContext.Provider>
   );
 }
