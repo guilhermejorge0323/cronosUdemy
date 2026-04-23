@@ -1,18 +1,26 @@
-import { HistoryIcon, HouseIcon, MoonIcon, SettingsIcon, SunIcon } from 'lucide-react';
+import {
+  HistoryIcon,
+  HouseIcon,
+  MoonIcon,
+  SettingsIcon,
+  SunIcon,
+} from 'lucide-react';
 import styles from './styles.module.css';
 import { useEffect, useState } from 'react';
+import { RouterLink } from '../../RouterLink';
 
 type AvailableThemes = 'dark' | 'light';
 
 export function Menu() {
   const [theme, setTheme] = useState<AvailableThemes>(() => {
-    const storageTheme = localStorage.getItem('theme') as AvailableThemes || 'dark';
+    const storageTheme =
+      (localStorage.getItem('theme') as AvailableThemes) || 'dark';
     return storageTheme;
   });
 
   const nextThemeIcon = {
     dark: <SunIcon />,
-    light: <MoonIcon />
+    light: <MoonIcon />,
   };
 
   function handleThemeChange(e: React.MouseEvent) {
@@ -26,36 +34,36 @@ export function Menu() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-  },[theme]);
+  }, [theme]);
 
   return (
     <nav className={styles.menu}>
-      <a
+      <RouterLink
         className={styles.menuLink}
-        href='#'
-        aria-label='Ir para home'
-        title='home'
+        href='/'
+        aria-label='ir para home'
+        title='ir para home'
       >
         <HouseIcon />
-      </a>
+      </RouterLink>
 
-      <a
+      <RouterLink
         className={styles.menuLink}
-        href='#'
+        href='/history'
         aria-label='ir para ver historico'
         title='ver historico'
       >
         <HistoryIcon />
-      </a>
+      </RouterLink>
 
-      <a
+      <RouterLink
         className={styles.menuLink}
         href='#'
         aria-label='Ir para configs'
         title='configs'
       >
         <SettingsIcon />
-      </a>
+      </RouterLink>
 
       <a
         className={styles.menuLink}

@@ -2,6 +2,7 @@ import { Container } from '../../components/Container';
 import { GenericHtml } from '../../components/GenericHtml';
 import { Heading } from '../../components/Heading';
 import { MainTemplate } from '../../components/Templates/MainTemplate';
+import { RouterLink } from '../../RouterLink';
 
 export function AboutPomodoro() {
   return (
@@ -50,7 +51,7 @@ export function AboutPomodoro() {
           <p>
             Você pode configurar o tempo de foco, descanso curto e descanso
             longo do jeito que quiser! Basta acessar a{' '}
-            <a href='/settings'>página de configurações</a> e ajustar os minutos
+            <RouterLink href='/settings'>página de configurações</RouterLink> e ajustar os minutos
             como preferir.
           </p>
 
@@ -111,7 +112,7 @@ export function AboutPomodoro() {
 
           <p>
             <strong>Pronto pra focar?</strong> Bora lá{' '}
-            <a href='/'>voltar para a página inicial</a> e iniciar seus
+            <RouterLink href='/'>voltar para a página inicial</RouterLink> e iniciar seus
             Pomodoros! 🍅🚀
           </p>
 

@@ -1,13 +1,20 @@
+import { useLocation } from 'react-router';
 import './App.css';
 import { TaskContextProvider } from './contexts/TaskContext/TaskContextProvider';
-import { Home } from './pages/Home';
+import { MessageContainer } from './MessagesContainer';
+import { MainRouter } from './Routers/MainRouter';
+import { useEffect } from 'react';
 
 
 
 export function App() {
+
+
   return (
     <TaskContextProvider>
-      <Home />
+      <MessageContainer>
+        <MainRouter />
+      </MessageContainer>
     </TaskContextProvider>
   );
 }
